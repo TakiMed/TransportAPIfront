@@ -1,16 +1,12 @@
 <div>
-<div class="row">
+  <div class="row">
       <div class="mb-3 col-sm-4">
           <label for="from" class="form-label">From</label>
           <input type="text" 
           (keydown) = "search($event)" 
           class="form-control" id="from" value = {{from}}>
-          <div class="dropdown" [ngClass] = "{'show': toggleDropdown1}">
-            <button class="btn dropdown-toggle" type="button" 
-              data-bs-toggle="dropdown" 
-              aria-expanded="toggleDropdown1"> 
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" [ngClass] = "{'show': toggleDropdown1}" *ngFor="let st of stations">
+          <div class="dropdown" [ngClass] = "{'show': toggleDropdown1}" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="toggleDropdown1">
+            <div class="dropdown-menu" aria-labelledby="from" [ngClass] = "{'show': toggleDropdown1}" *ngFor="let st of stations">
               <a class="dropdown-item" href="#" (click) = "removeList1(st)">{{ st }}</a>
             </div>
           </div>
@@ -20,16 +16,18 @@
         <input type="text" 
         (keydown) = "search($event)" 
         class="form-control" id="to" value = {{to}}>
-        <div class="dropdown" [ngClass] = "{'show': toggleDropdown2}">
-          <button class="btn dropdown-toggle" type="button" 
-            data-bs-toggle="dropdown" 
-            aria-expanded= "toggleDropdown2"> 
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" [ngClass] = "{'show': toggleDropdown2}" *ngFor="let st of stations">
+        <div class="dropdown" [ngClass] = "{'show': toggleDropdown2}" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded= "toggleDropdown2">
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2" [ngClass] = "{'show': toggleDropdown2}" *ngFor="let st of stations">
             <a class="dropdown-item" href="#" (click) = "removeList2(st)">{{ st }}</a>
           </div>
         </div>
       </div>
   </div>
-  <button type="button" (click)="getTime()" class="btn btn-success btn-lg">Get Time</button>
+  <div class="buttons justify-content-end">
+    <button type="button" (click)="getTime(from,to)" class="btn btn-success btn-lg">Get Time</button>
+    <button type="button" (click)="reset()" class="btn btn-primary btn-lg">Clear</button>
+  </div>
+  
+  <input type="text" disabled = "true"
+        class="justify-content-start mt-200" id="duration" value = {{durationInSeconds}}>
 </div>

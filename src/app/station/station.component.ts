@@ -25,29 +25,33 @@ export class StationComponent implements OnInit {
  
   search(event:any){
     this.stationService.searchByStationName(event.target.value)
-                       .subscribe(data => { 
-                         console.log(data);
+                       .subscribe(data => {
+                         if(event.target.id=="from"){this.toggleDropdown1 = true;} else {this.toggleDropdown2 = true;}
                          this.stations = data;
-                        this.toggleDropdown = !this.toggleDropdown;}
+                        }
     );
   }
 
-  getTime():any{
-    this.stationService.getTimeNeeded("Geneve","Basel")
+  getTime(from: any, to: any):any{
+    this.stationService.getTimeNeeded(from,to)
                        .subscribe(data =>{
-                        console.log(data);
+                        console.log(from, to);
+                        console.log(this.durationInSeconds/60);
                         this.durationInSeconds=data;}
                         );
     }
+  reset(){
+    this.from = "";
+    this.to = "";
+    this.durationInSeconds = 0;
+  }
   removeList1(val:any){
     this.from = val;
     this.toggleDropdown1 = false;
-    this.toggleDropdown = false;
   }
   removeList2(val:any){
     this.to = val;
     this.toggleDropdown2 = false;
-    this.toggleDropdown = false;
   }
 }
 

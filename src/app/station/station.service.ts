@@ -11,14 +11,13 @@ export class StationService{
     private getHeaders(): HttpHeaders{
         const httpHeaders  = new HttpHeaders();
         httpHeaders.set('Access-Control-Allow-Origin','*');
-        httpHeaders.set('Access-Control-Allow-Headers', 'Content-Type');
         httpHeaders.set('Access-Control-Allow-Methods','GET');
         httpHeaders.set('Content-Type','application/json');
         return httpHeaders;
     }
     
     getTimeNeeded(station1: string, station2: string): Observable<number>{
-        const apiUrl = `${environment.apiUrl}/getDuration/from=${station1}&to=${station2}`;
+        const apiUrl = `${environment.apiUrl}/getDuration?from=${station1}&to=${station2}`;
         return this.httpClient.get<number>(
             apiUrl, {headers: this.getHeaders() }
         );

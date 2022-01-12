@@ -6,7 +6,7 @@
           (keydown) = "search($event)" 
           class="form-control" id="from" value = {{from}}>
           <div class="dropdown" [ngClass] = "{'show': toggleDropdown1}" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="toggleDropdown1">
-            <div class="dropdown-menu" aria-labelledby="from" [ngClass] = "{'show': toggleDropdown1}" *ngFor="let st of stations">
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1" [ngClass] = "{'show': toggleDropdown1}" *ngFor="let st of stations">
               <a class="dropdown-item" href="#" (click) = "removeList1(st)">{{ st }}</a>
             </div>
           </div>
@@ -29,5 +29,5 @@
   </div>
   
   <input type="text" disabled = "true"
-        class="justify-content-start mt-200" id="duration" value = {{durationInSeconds}}>
+        class="justify-content-start" id="duration" value = {{durationInSeconds}}>
 </div>
